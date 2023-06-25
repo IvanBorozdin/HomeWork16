@@ -6,31 +6,26 @@ import ru.skepro.homework17.exception.EmployeeNotFoundException;
 import ru.skepro.homework17.exception.EmployeeStorageIsFullException;
 import ru.skepro.homework17.model.Employee;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    private static final int EMPLOYEES_MAX_COUNT = 5;
-    private final List<Employee> employees;
+    private final Map<String,Employee> employees;
 
     public EmployeeServiceImpl() {
-        this.employees = new ArrayList<>();
-    }
+        this.employees = new HashMap<>();
 
+    }
     @Override
     public Employee add(String firstName, String lastName) {
-        if (employees.size()>=EMPLOYEES_MAX_COUNT){
-            throw new EmployeeStorageIsFullException();
-        }
+
         Employee employee = new Employee(firstName,lastName);
 
-        if (employees.contains(employee)){
+        if (employees.containsKey(employee.getFullNAme())){
             throw new EmployeeAlreadyAddedException();
         }
 
-        employees.add(employee);
+        employees.put(employee.getFullNAme(),employee);
 
         return employee;
     }
@@ -40,11 +35,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         Employee employee = new Employee(firstName,lastName);
 
-        if (!employees.contains(employee)){
+        if (!employees.containsKey(employee.getFullNAme())){
             throw new EmployeeNotFoundException();
         }
 
-        employees.remove(employee);
+        employees.remove(employee.getFullNAme());
 
 
         return employee;
@@ -54,7 +49,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee find(String firstName, String lastName) {
         Employee employee = new Employee(firstName,lastName);
 
-        if (!employees.contains(employee)){
+        if (!employees.containsKey(employee.getFullNAme())){
             throw new EmployeeNotFoundException();
         }
 
@@ -64,6 +59,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Collection<Employee> findAll() {
-        return employees;
+        return employees.values();
     }
 }
