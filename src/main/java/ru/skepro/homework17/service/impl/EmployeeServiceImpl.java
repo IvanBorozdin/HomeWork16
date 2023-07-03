@@ -1,10 +1,11 @@
-package ru.skepro.homework17.service;
+package ru.skepro.homework17.service.impl;
 
 import org.springframework.stereotype.Service;
 import ru.skepro.homework17.exception.EmployeeAlreadyAddedException;
 import ru.skepro.homework17.exception.EmployeeNotFoundException;
 import ru.skepro.homework17.exception.EmployeeStorageIsFullException;
 import ru.skepro.homework17.model.Employee;
+import ru.skepro.homework17.service.EmployeeService;
 
 import java.util.*;
 
