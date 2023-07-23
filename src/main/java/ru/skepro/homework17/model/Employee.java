@@ -28,16 +28,9 @@ public class Employee {
         return salary;
     }
 
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
 
     public int getDepartmentId() {
         return departmentId;
-    }
-
-    public void setDepartmentId(int departmentId) {
-        this.departmentId = departmentId;
     }
 
     public String getFirstName() {
@@ -80,5 +73,6 @@ public class Employee {
                 ", lastName='" + lastName + '\'' +
                 '}';
     }
+
 
 }

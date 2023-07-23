@@ -24,6 +24,13 @@ public class DepartmentServiceiimpl implements DepartmentService {
     public DepartmentServiceiimpl(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
+    @Override
+    public Integer getDepartmentSalarySum (int departmentId) {
+        return employeeService.findAll().stream()
+                .filter(e -> e.getDepartmentId() == departmentId)
+                .mapToInt(Employee::getSalary)
+                .sum();
+    }
 
     @Override
     public Employee findEmployeeWitMaxSalary(int departmentId) {
