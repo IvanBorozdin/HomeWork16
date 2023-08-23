@@ -26,15 +26,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee add(String firstName, String lastName, int salary, int departmentId) {
-        validationService.validate(firstName, lastName);
+        validationService.validate(firstName, lastName,salary,departmentId);
         return addEmployee (new Employee (capitalize(firstName), capitalize (lastName)));
     }
 
-    @Override
-    public Employee add(String firstName, String lastName) {
-        validationService. validate(firstName, lastName);
-        return addEmployee (new Employee (capitalize(firstName), capitalize (lastName)));
-    }
+  //  @Override
+   // public Employee add(String firstName, String lastName) {
+  //      validationService. validate(firstName, lastName);
+  //      return addEmployee (new Employee (capitalize(firstName), capitalize (lastName)));
+ //   }
     @Override
     public Employee remove(String firstName, String lastName) {
 

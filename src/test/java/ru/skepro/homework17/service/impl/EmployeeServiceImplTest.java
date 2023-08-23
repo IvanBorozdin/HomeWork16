@@ -18,7 +18,7 @@ class EmployeeServiceImplTest {
 
     @Test
     public void shouldAddEmployee() {
-        Employee employee = new Employee (FIRST_NAME, LAST_NAME);
+        Employee employee = new Employee (FIRST_NAME, LAST_NAME,SALARY, DEPARTMENT_ID);
         assertFalse (employeeService.findAll().contains (employee));
 
         Employee addedEmployee = employeeService.add(FIRST_NAME, LAST_NAME, SALARY, DEPARTMENT_ID);
@@ -37,7 +37,7 @@ class EmployeeServiceImplTest {
 @Test
     public void shouldFindEmployee(){
     Employee addedEmployee = employeeService.add(FIRST_NAME, LAST_NAME, SALARY, DEPARTMENT_ID);
-    assertEquals(addedEmployee,employeeService.add(FIRST_NAME,LAST_NAME));
+    assertEquals(addedEmployee,employeeService.find(FIRST_NAME,LAST_NAME));
 
     }
 
@@ -55,10 +55,10 @@ class EmployeeServiceImplTest {
         assertTrue (employeeService.findAll().contains (addedEmployee));
         assertEquals( 1, employeeService.findAll().size());
 
-  //      Employee removedEmployee = employeeService.remove(FIRST_NAME,LAST_NAME);
-  //      assertEquals(addedEmployee,removedEmployee);
-  //      assertFalse (employeeService.findAll().contains (addedEmployee));
-   //     assertEquals( 0, employeeService.findAll().size());
+        Employee removedEmployee = employeeService.remove(FIRST_NAME,LAST_NAME);
+       assertEquals(addedEmployee,removedEmployee);
+        assertFalse (employeeService.findAll().contains (addedEmployee));
+        assertEquals( 0, employeeService.findAll().size());
 
     }
 
